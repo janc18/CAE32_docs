@@ -1,0 +1,6 @@
+site_name: CAE32
+
+nav:
+  - Home: index.md
+  - Hardware: hardware.md
+theme: readthedocs
