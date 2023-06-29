@@ -1,0 +1,60 @@
+\documentclass[paper=portrait,pagesize]{report}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage[spanish]{babel}
+\usepackage{subfigure}
+\usepackage{fancyhdr} 
+\cfoot{\thepage}
+\fancypagestyle{custom}{%
+  \fancyhf{}% Clear header and footer
+  \renewcommand{\headrulewidth}{0pt}% Remove header line
+  \cfoot{\thepage}
+}
+\begin{document}
+	\begin{titlepage}
+		\centering
+		\vspace{1cm}
+		{\bfseries\LARGE Manual T\'ecnico\par}
+		\vspace{3cm}
+		{\scshape\Huge CAE32 Pedales PCB \par}
+		\vspace{3cm}
+		\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{front_bgr.png}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{back_bgr.png}
+		\end{minipage}
+		\vspace{1cm}
+		\vspace{1cm}
+		{\itshape\Large Versi\'on: 2.0 \par}
+		{\itshape\Large Revisi\'on: 1 \par}
+		\vfill
+		{\Large Autor: \par}
+		{\Large OpenHF \par}
+		\vfill
+		{\Large \today \par}
+	\end{titlepage}
+	\begin{landscape}
+	\includepdf[pages=-,angle=90,pagecommand={\thispagestyle{custom}}]{salida.pdf}
+	\end{landscape}
+
+	\section{¿Qu\'e es CAE32 Pedales?}
+	cae32 Pedales es una plataforma desarrollo de codigo y hardware abierto, que tiene como proposito 
+	tener un equipo barato con buenas prestaciones (soporte HID, buena resolucion (14-24 bits)) y con 
+	costantes actualizaciones impulsadas por la comunidad
+
+	\section{Componentes principales}
+
+	\section{USB-c}
+
+	\section{Caracteristicas de la PCB}
+
+	\section{Como actualizar el firmware}
+
+	\section{Precauciones}
+
+\end{document} 
