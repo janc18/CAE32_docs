@@ -2,5 +2,11 @@ site_name: CAE32
 
 nav:
   - Home: index.md
-  - Hardware: hardware.md
+  - 'Hardware':
+      - 'Pedales': 'pedales.md'
+      - 'Volante': 'volante.md'
+      - 'Palanca de cambios': 'palanca_de_cambios.md'
+      - 'Changelog': 'changelog_hardware.md'
+  - Firmware:
+      - 'Firmware': 'firmware.md'
 theme: readthedocs

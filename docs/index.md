@@ -8,8 +8,8 @@ para acceder a todos los recursos.
 CAE32 es un proyecto de código abierto bajo la licencia
 [GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.html), 
 que tiene como objetivo proporcionar todos los elementos necesarios para lograr
-disfrutar de juegos de simulación, principalmente en el área automovilística pero
-nada impide que sea usada para otra área.
+disfrutar de juegos de simulación, con Hardware, Software y Firmware Open Source,
+principalmente en el área automovilística pero nada impide que sea usada para otra área.
 
 ## Componentes
 
