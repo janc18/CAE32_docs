@@ -6,7 +6,12 @@ nav:
       - 'Pedales': 'pedales.md'
       - 'Volante': 'volante.md'
       - 'Palanca de cambios': 'palanca_de_cambios.md'
-      - 'Changelog': 'changelog_hardware.md'
+  - 'Changelog':
+      - 'Pedales': 'changelog_hardware.md'
   - Firmware:
       - 'Firmware': 'firmware.md'
+  - Sofware:
+      - 'GUI gtk3': 'gui.md'
+  - 'Tests':
+      - 'Simulación de dispositivo': sim_disp.md
 theme: readthedocs

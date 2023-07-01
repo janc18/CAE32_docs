@@ -1,5 +1,22 @@
 # Firmware
 
+## Frameworks(ESP-IDF y STM32CubeIDE)
+
+Cada Microcontrolador usa su framework correspondiente
+
+- STM32xx **STM32CubeIDE**
+- ESP32xx **ESP-IDF**
+
+Para compilar el firmware para el ESP32-S3 es usado un contenedor de docker proporcionado
+por Espressif usando la versión **latest**
+
+[Aquí puedes encontrar información relacionada con Espressif de docker](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.html?highlight=docker)
+
+[Aquí encontrarás las instrucciones para generar el contendor](https://hub.docker.com/r/espressif/idf/tags)
+
+Por el momento solo esp-idf cuenta con contenedor, para compilar para
+Microcontroladores de STM32 es necesario usar STM32CubeIDE.
+
 ## Actualización de firmware(STM32F072RBT6)
 El STM32F072RBT6 permite cargar el firmware de 3 maneras posibles
 
@@ -7,16 +24,16 @@ El STM32F072RBT6 permite cargar el firmware de 3 maneras posibles
 - UART en pines (PA14/PA15 o PA9/PA10)
 - I2C en pines (PB6/PB7)
 
-Para mas información puedes visitar la 
+Para más información puedes visitar la 
 [hoja de datos](https://datasheet.lcsc.com/lcsc/1809301214_STMicroelectronics-STM32F072RBT6_C46046.pdf#page=13)
 
-La forma de actualizar el firmware para esta versión, es através de UART,
+La forma de actualizar el firmware de esta versión, es através de UART,
 el puerto se encuentra aquí
 
 ![UART](./img/uart.png)
 
 Para que el Microcontrolador entre en modo de actualización de firmware es necesario
-cumplir con un patrón , estos se encuentran en el documento **AN2606**
+cumplir con un patrón, estos se encuentran en el documento **AN2606**
 
 **Página 62** 
 
@@ -54,7 +71,7 @@ El cambio que se requiere hacer en el programa STM32CubeProgrammer es el siguien
 
 ### Pasos para actualizar el firmware
 
-Conecta el puerto UART al puente USB-UART de la siguiente manera:
+Conecta el puerto UART de la PCB al puente USB-UART de la siguiente manera:
 
 |PCB (UART)| Puente USB-UART|
 |-|-|
@@ -74,7 +91,7 @@ llevar el nombre de **/dev/ttyUSBx** y en Windows **COMx**
 
 6. Presionar el bóton verde de **Connect**
 
-7. **IMPORTANTE:** Realizar los pasos la activación del carga de firmware estos los
+7. ⚠️**IMPORTANTE**⚠️ Realizar los pasos de la activación de carga de firmware estos los
 encuentras 
 [aquí](#actualizacion-de-firmware), si no sigues este paso, no podrás actualizar el
 firmware en un futuro.
