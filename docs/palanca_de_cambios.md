@@ -19,3 +19,20 @@ Esta PCB solo contará con:
 aquí**
 
 ## Estado Actual
+
+Decidí usar el microcontrolador RP2040, ya que como se menciona anteriormente
+solo es necesario un MCU con capacidades HID y si se compara con el precio de algún 
+MCU de la familia de Espressif, el RP2040 resulta considerablemente más barato.
+
+Otro cambio realizado fue el de remover el puerto RJ45 por _"Pin Sockets"_, esto para
+reducir el espacio.
+
+Además se añaden 13 entradas para las marchas en vez de 10 entradas.
+
+Por último se le da un formato de módulo a la PCB con el uso de _Castellated pins_ para
+que en futuro pueda cambiarse este núcleo(esta PCB, ya que cuenta con el MCU), además
+para que el RP2040 aproveche todos sus pines se agrega un puerto Mezzanine en la capa 
+superior.
+
+![shifter](./img/Shifter.png)
+![shifter3D](./img/Shifter_.png)
