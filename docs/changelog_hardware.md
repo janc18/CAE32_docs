@@ -1,62 +1,53 @@
+# Changelog
 
-# Changelog (Lista de cambios)
+## Pedals PCB
 
-## Pedales PCB
+### Outcome (Version 1)
 
-### Resultado (Versión 1)
+![pedals_v2](./img/pcb_pedales_v1.png)
 
-![pedales_v2](./img/pcb_pedales_v1.png)
+### Key Issues with Version 1
 
-### Principales problemas con la Versión 1
+1. The connectors used are difficult to handle and require meticulous assembly for proper functioning.
 
-1. Los conectores usados son difíciles de usar, requieren de un ensamble meticuloso
-para que funcione correctamente.
+2. The buttons used for **Reset** and **Boot** are very small, making them difficult to access when a case is used.
 
-2. Los botones usados para el **Reset** y **Boot** son muy pequeños, por lo que si se
-usa un case, podrían ser de difícil acceso.
+3. The MCU's **HAL** API has unresolved issues, especially concerning analog readings.
 
-3. La Api **HAL** del MCU tiene problemas que aún no he podido resolver de manera 
-correcta, estos están relacionados con la lectura analógica.
+4. Debugging and programming ports are not efficiently distributed.
 
-4. Los puertos para la depuración y programación no están distribuidos eficientemente.
+5. Despite having a maximum resolution of 14 bits, it suffers from noise that interferes with readings, resulting in a poor gaming experience.
 
-5. Aunque tiene una resolución máxima de 14bits, tiene ruido que altera las lecturas
-ocasionando una peor experiencia de juego.
+6. When updating the firmware, it cannot be achieved without physically pressing the buttons.
 
-6. Cuando se sube el nuevo firmware no se logra actualizar a menos de que se presionen
-los botones físicamente.
+### Troubleshooting for Version 1
 
-### Solución de problemas para la Versión 1
+1. Replace the connectors used with "pin sockets" and add a soldering pad for direct cable connection, along with the necessary silk-screen markings.
 
-1. Cambiar los conectores usados por unos _pin sockets_, y agregar una huella para soldar
-directamente un cable, además de añadir la serigrafía necesaria.
+2. Choose taller buttons and position them in an easily accessible area.
 
-2. Elegir botones más altos y acomodarlos en una zona de fácil acceso 
+3. Use the LL (Low Level) layer for more precise control of analog readings.
 
-3. Usar la capa LL(Low Level) para tener un control más preciso de las lecturas 
-analógicas
+4. Rearrange the ports to a more accessible location, such as placing them side by side.
 
-4. Acomodar los puertos a una zona más accesible, como a un costado, uno al lado del otro
+5. Implement software filtering.
 
-5. Agregar un filtro por software
+6. Connect the Reset and Boot inputs to the RJ45 port.
 
-6. Conectar las entras de Reset y Boot al puerto rj45
+### Improvements (Newly Added Components)
 
-### Mejoras (nuevos componentes agregados)
+- 8-channel multiplexer with ADC.
 
-- Multiplexor de 8 canales con ADC 
+- Hardware for 3 load cells.
+	- Possible load cell model [Aliexpress](https://es.aliexpress.com/item/1005004518830741.html).
 
-- Hardware para 3 células de carga
-	- Posible modelo de celda de carga [Aliexpress](https://es.aliexpress.com/item/1005004518830741.html)
+- Add pins for SPI and I2C connections.
 
-- Añadir pines para conexión SPI y I2c
+- USB Type-C.
 
-- USB tipo C
+- New, more powerful microcontroller (STM32F0 family) with HID support, potentially allowing it to function without the main board.
 
-- Nuevo Microcontrolador más potente(Familia STM32F0), con soporte para conexión HID,
-por lo que podría funcionar sin la placa principal
-
-### Resultado (Versión 2)
+### Outcome (Version 2)
 
 ![PCB V2](./img/Pedals3.png)
 

@@ -1,156 +1,99 @@
-# PCB pedales
-![status](https://badgen.net/badge/Estado/Prototipo de manufactura/yellow)
-## Versión:2, Revisión:1
+# Pedals PCB
+![status](https://badgen.net/badge/Status/Manufacturing Prototype/yellow)
+## Version: 2, Revision: 1
 
-![PCB pedales v2 Rev1](./img/Pedals3.png)
+![Pedals PCB v2 Rev1](./img/Pedals3.png)
 
 <img src="../img/front_bgr.png" alt="drawing" width="350"/>
 <img src="../img/back_bgr.png" alt="drawing" width="350"/>
 
-Esta PCB tiene un grado medio de dificultad, debido al _ruteo_ de la PCB de la parte 
-analógica
+This PCB has a medium level of difficulty, mainly due to the routing of the analog part of the PCB.
 
-## Características
+## Features
 
-- [8 Entradas analógicas](#entradas-analogicas-adc128s102)
-- [3 Entradas para celdas de carga](#celdas-de-carga)
-- UART _(Para actualizar firmware o algún otro uso)_
+- [8 Analog Inputs](#analog-inputs-adc128s102)
+- [3 Inputs for Load Cells](#load-cells)
+- UART _(For firmware updates or other purposes)_
 - SPI
-- CAN _(No cuenta con transductor)_
-- Puerto USB-C para comunicación con PC
-- Puerto RJ45 para conectarse a la placa principal
+- CAN _(No transducer included)_
+- USB-C port for communication with PC
+- RJ45 port to connect to the main board
 
-## Propósito de PCB
-Usarse para capturar la posición de los pedales con sus 8 canales analógicos y soporte
-para celdas de cargas
+## PCB Purpose
+It is used to capture the position of the pedals with its 8 analog channels and support for load cells.
 
-## Esquema eléctrico 
+## Electrical Schematic 
 
-[Ver PDF](./pdfs/kicad_schematic.pdf)
+[View PDF](./pdfs/kicad_schematic.pdf)
 
-## Componentes principales
+## Key Components
 
-|Nombre|Cantidad|Hoja de datos|
+|Name|Quantity|Datasheet|
 |-|-|-|
 |STM32F072RBT6|1|[Link](https://datasheet.lcsc.com/lcsc/1809301214_STMicroelectronics-STM32F072RBT6_C46046.pdf)|
 |ADC128S102|1|[Link](https://datasheet.lcsc.com/lcsc/2304140030_Texas-Instruments-ADC128S102CIMTX-NOPB_C179666.pdf)|
 |HX711|3|[Link](https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf)|
 
+## Analog Inputs _(ADC128S102)_
 
-## Entradas analógicas _(ADC128S102)_
+To acquire the position of the sensors (potentiometers, Hall effect, etc.), the ADC128S102 IC is used, which is an 8-channel multiplexer that integrates a **12-bit** ADC, providing a resolution of **4096** positions. It is connected via **SPI** to the microcontroller (STM32F072RBT6).
 
-Para adquirir la posición de los sensores _(potenciómetros, efecto hall, etc.)_
-se usa el IC ADC128S102, el cual es un multiplexador de 8 canales que integra un 
-ADC de **12 bits**, con lo que se obtiene una resolución de **4096** posiciones, este
-se encuentra conectado por **SPI** al Microcontrolador(STM32F072RBT6).
+The PCB has labels such as **ACCEL, BRAKE, CLUTCH, AN4-AN8**.
 
-La PCB cuenta con etiquetas como **ACCEL, BRAKE, CLUTCH, AN4-AN8**.
+By default, **ACCEL, BRAKE, CLUTCH** correspond to the default sensor inputs, while **AN4-AN8** can be used for any other purpose and are located on the back of the PCB.
 
-Las cuales por lógica **ACCEL, BRAKE, CLUTCH** corresponde a las entradas de sensores 
-por defecto, mientras que **AN4-AN8** se pueden usar para cualquier otro propósito,
-estas se encuentra al reverso de la PCB.
+Each of the sensor input points (e.g., potentiometer) has 3 pins with their respective labels, and this also applies to their respective pads.
 
-Cada una de las entradas donde se soldará el sensor _(potenciómetro, etc)_ cuenta con 
-3 pines con su respectiva etiqueta, esto también se aplica a sus mismos pads.
+![inputs](./img/señales.png)
 
-![entradas](./img/señales.png)
-
-|Nombre de Etiqueta|Significado|
+|Label Name|Meaning|
 |-|-|
-|3v3+|Aquí se alimenta el sensor con 3.3V|
-|AN|Salida del sensor analógico|
-|GND|Tierra|
+|3v3+|Here, the sensor is powered with 3.3V|
+|AN|Analog sensor output|
+|GND|Ground|
 
-Para tener un valor de referencia más estable, se agrega un integrado de voltaje de
-referencia [REF3033](http://www.ti.com/lit/ds/symlink/ref3033.pdf) de 3.3V con lo cual
-puede obtener lecturas más estables
+To provide a more stable reference voltage, a 3.3V voltage reference integrated circuit [REF3033](http://www.ti.com/lit/ds/symlink/ref3033.pdf) is added to the PCB, which allows for more stable readings.
 
+### Precautions
 
-### Precauciones
+**It is your responsibility to verify the connections of the sensors you intend to use**
 
-**Es tu responsabilidad verificar las conexiones de los sensores a usar**
+1. There is no protection against reverse polarity (reversed connection of GND and 3v3).
 
-1. No cuenta con protección contra polaridad inversa(Conexión al revés de GND y 3v3)
+2. There is no protection against overload.
 
-2. No cuenta con protección contra sobrecarga
+## Load Cells
 
-## Celdas de carga
+It supports 3 load cells.
 
-Cuenta con soporte para 3 celdas de carga.
-
-El diseño esta basado en el diagrama creado por Digikey y se agregó una modificación, la
-cual se explica en el diagrama.
-**SparkFun_HX711_Load_Cell_V11**
+The design is based on the diagram created by Digikey, with an added modification explained in the diagram. **SparkFun_HX711_Load_Cell_V11**
 
 **Design by: N.Seidle**
 
-**License:CC BY-SA 4.0**
+**License: CC BY-SA 4.0**
 
+Each of the ports for the load cells is labeled, and they have typical symbols, but it all depends on the chosen load cell.
 
-Cada uno de los puertos para las celdas de carga están etiquetadas, además de contar con
-la simbología típica, pero todo depende de la celda de carga elegida.
+![load-cells](./img/load_cells.png)
 
-![celdas-de-carga](./img/load_cells.png)
+For more information, I recommend referring to the electrical diagram [here](./pdfs/kicad_schematic.pdf#page=5), where you can find it.
 
-Para más información recomiendo ver el diagrama eléctrico
-[aquí](./pdfs/kicad_schematic.pdf#page=5) lo puedes encontrar
+## Device Mode (SPI)
+This version of the pedals can function as a **device** because the RJ45 connector is connected to the Microcontroller via SPI. This is done to send all data to the main board.
 
-## Modo device(SPI)
-Esta versión de pedales puede funcionar como **dispositivo**, ya que el conector RJ45
-está conectado al Microcontrolador por SPI, esto para enviar todos los datos a la placa
-principal.
+## Device Mode (USB-C)
+It allows the STM32F072RBT6 Microcontroller to act as a HID (Human Interface Device), which means it will be recognized as a joystick by the PC.
 
-## Modo device(USB-C)
-Permite que el Microcontrolador STM32F072RBT6 actue como un dispositivo HID, por lo cual
-será reconocido como un _Joystick_ por la PC
-
-## Notas de los modos anteriormente mencionados
+## Notes on the Above-Mentioned Modes
 
 **SPI**
 
-Al conectarlo por el puerto RJ45, este es suministrado con alimentación, así 
-que no debe de conectarse el puerto USB-C.
+When connecting via the RJ45 port, it is supplied with power, so you should not connect the USB-C port.
 
-Además, los datos que son adquiridos por la PCB, se envián por el protocolo SPI
-a la PCB principal usando el puerto RJ45.
+Additionally, the data acquired by the PCB is sent through the SPI protocol to the main PCB using the RJ45 port.
 
 **USB-C**
 
-La configuración del puerto USB-C está en modo dispositivo, de esa manera el host(PC) 
-suministrará la alimentación y se mostrará como un dispositivo HID
+The USB-C port configuration is in device mode. This way, the host (PC) will provide power, and it will be recognized as a HID device.
 
-Además, cuenta con dos resistencias en _Pulldown_ conectado en **CC1 y CC2** 
-de 5.1K ohms,con lo cual en teoría el host podría entregar hasta 1.5 Amperes 
-de corriente, aunque la PCB consume aproximadamente 320 mA, 
-quizá para la siguiente versión se agregue 
-capacidades de PD _(PowerDelivery)_.
-
-## ¿Cómo obtengo acceso a la PCB?
-
-Por el momento la única forma es con un proveedor de PCB como JLCPCB, PCBWay etc,
-subiendo el archivo gerber.
-
-Ya que pasen los _tests_ se usará el servicio de ensamblado de PCB _(PCB Assembly)_
-para mayor facilidad de uso
-
-Los archivos gerber y BOM se estarán publicando en _releases_ en el 
-[repositorio](https://github.com/janc18/CAE32).
-
-También tienes acceso a los esquemáticos para cualquier modificación, [aquí](https://github.com/janc18/CAE32/tree/main/Esquematicos/CAE32_PCB/Pedals/Pedals)
-
-**Datos relevantes de PCB**
-
-- 4 capas
-
-- Dimensiones: 70mm x 76mm
-
-El precio aproximado de esta versión de PCB  sin incluir envio es el siguiente:
-
-- **7** Dólares estadounidenses de manufactura de PCB por cinco unidades en 
-JLCPCB _(no patrocinado)_
-
-- **24** Dólares estadounidenses por los componentes eléctricos  en LCSC 
-_(no patrocinado)_
-
-**Día de captura de precio: 30/06/23 30 de junio del año 2023**
-
+Furthermore, it has two pull-down resistors connected to **CC1 and CC2**

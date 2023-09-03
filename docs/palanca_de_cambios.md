@@ -1,38 +1,30 @@
-# Palanca de cambios _(Shifter)_
+# Gear Shift _(Shifter)_
 
-![status](https://badgen.net/badge/Estado/Desarrollo de PCB/purple)
+![status](https://badgen.net/badge/Status/PCB Development/purple)
 
-Esta PCB es la que tiene menos grado de dificultad de diseño, ya que solo tiene que 
-leer la señal digital de sensores, estos pueden ser:
+This PCB has the least degree of design complexity since it only needs to read the digital signal from sensors, which can be:
 
-- Botones (Push, switches, interruptores, etc.)
-- Efecto hall
-- Cualquier otro que produzca señales en alto y bajo
+- Buttons (Push, switches, toggles, etc.)
+- Hall effect sensors
+- Any others that produce high and low signals
 
-Esta PCB solo contará con:
+This PCB will only include:
 
-- Microcontrolador principal(con capacidades USB HID)
-- 10 Entradas digitales una para cada marcha
-- Puerto USB-C y RJ45
+- Main microcontroller (with USB HID capabilities)
+- 10 digital inputs, one for each gear
+- USB-C port and RJ45 port
 
-**Como aún no se a iniciado el diseño de esta PCB se estarán subiendo actualizaciones
-aquí**
+**As the design for this PCB has not yet started, updates will be posted here.**
 
-## Estado Actual
+## Current Status
 
-Decidí usar el microcontrolador RP2040, ya que como se menciona anteriormente
-solo es necesario un MCU con capacidades HID y si se compara con el precio de algún 
-MCU de la familia de Espressif, el RP2040 resulta considerablemente más barato.
+I decided to use the RP2040 microcontroller, as mentioned earlier, since only an MCU with HID capabilities is required. When compared to the price of any MCU from the Espressif family, the RP2040 is considerably cheaper.
 
-Otro cambio realizado fue el de remover el puerto RJ45 por _"Pin Sockets"_, esto para
-reducir el espacio.
+Another change made was to replace the RJ45 port with "Pin Sockets" to reduce space.
 
-Además se añaden 13 entradas para las marchas en vez de 10 entradas.
+Additionally, 13 inputs for the gears are added instead of 10 inputs.
 
-Por último se le da un formato de módulo a la PCB con el uso de _Castellated pins_ para
-que en futuro pueda cambiarse este núcleo(esta PCB, ya que cuenta con el MCU), además
-para que el RP2040 aproveche todos sus pines se agrega un puerto Mezzanine en la capa 
-superior.
+Lastly, the PCB is given a module format with the use of castellated pins so that this core (this PCB, as it contains the MCU) can be changed in the future. Furthermore, to make the RP2040 utilize all its pins, a Mezzanine port is added to the top layer.
 
 ![shifter](./img/Shifter.png)
 ![shifter3D](./img/Shifter_.png)

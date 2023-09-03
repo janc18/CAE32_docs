@@ -1,19 +1,19 @@
-# Interfaz de usuario _(GUI)_
+# User Interface _(GUI)_
 
-Puedes visitar el [repositorio](https://github.com/janc18/CAE32)
-para acceder a todos los recursos.
+You can visit the [repository](https://github.com/janc18/CAE32)
+to access all the resources.
 
-Para que sea más amigable y fácil para el usuario se crea una GUI en Gtk3 escrita en el 
-**C**, la GUI sera capaz de:
+To make it more user-friendly and easy for the user, a GUI in Gtk3 is created, written in **C**. The GUI will be capable of:
 
-- Vista en tiempo real el movimiento de los actuadores.
-- Autoactualización de la GUI y de los microcontoladores cuando esto sea posible.
-- Configuración de sensores como: límites, deadzone, etc.
+- Real-time view of the actuator's movement.
+- Auto-update of the GUI and microcontrollers whenever possible.
+- Configuration of sensors such as limits, dead zone, etc.
 
-La construcción de la GUI se realiza en un contenedor docker con Debian 11
+The construction of the GUI is done in a Docker container with Debian 11.
 
-## Estado actual
+## Current Status
 
-Por el momento se puede ver el movimiento actual de los pedales
+At the moment, you can see the current movement of the pedals.
 
 ![gui](./videos/output.gif)
+

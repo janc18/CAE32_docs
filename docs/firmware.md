@@ -1,65 +1,59 @@
 # Firmware
 
-## Frameworks(ESP-IDF y STM32CubeIDE)
+## Frameworks (ESP-IDF and STM32CubeIDE)
 
-Cada Microcontrolador usa su framework correspondiente
+Each microcontroller uses its respective framework:
 
-- STM32xx **STM32CubeIDE**
-- ESP32xx **ESP-IDF**
+- STM32xx: **STM32CubeIDE**
+- ESP32xx: **ESP-IDF**
 
-Para compilar el firmware para el ESP32-S3 es usado un contenedor de docker proporcionado
-por Espressif usando la versión **latest**
+To compile the firmware for ESP32-S3, a Docker container provided by Espressif is used, using the **latest** version.
 
-[Aquí puedes encontrar información relacionada con Espressif de docker](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.html?highlight=docker)
+[You can find information related to Espressif's Docker here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-docker-image.html?highlight=docker)
 
-[Aquí encontrarás las instrucciones para generar el contendor](https://hub.docker.com/r/espressif/idf/tags)
+[Here are the instructions for generating the container](https://hub.docker.com/r/espressif/idf/tags)
 
-Por el momento solo esp-idf cuenta con contenedor, para compilar para
-Microcontroladores de STM32 es necesario usar STM32CubeIDE.
+Currently, only esp-idf has a container. To compile for STM32 microcontrollers, STM32CubeIDE is necessary.
 
-## Actualización de firmware(STM32F072RBT6)
-El STM32F072RBT6 permite cargar el firmware de 3 maneras posibles
+## Firmware Update (STM32F072RBT6)
 
-- USB por DFU
-- UART en pines (PA14/PA15 o PA9/PA10)
-- I2C en pines (PB6/PB7)
+The STM32F072RBT6 allows firmware updates in three possible ways:
 
-Para más información puedes visitar la 
-[hoja de datos](https://datasheet.lcsc.com/lcsc/1809301214_STMicroelectronics-STM32F072RBT6_C46046.pdf#page=13)
+- USB through DFU
+- UART on pins (PA14/PA15 or PA9/PA10)
+- I2C on pins (PB6/PB7)
 
-La forma de actualizar el firmware de esta versión, es através de UART,
-el puerto se encuentra aquí
+For more information, you can visit the [datasheet](https://datasheet.lcsc.com/lcsc/1809301214_STMicroelectronics-STM32F072RBT6_C46046.pdf#page=13).
+
+To update the firmware for this version, you must use UART. The port is located here:
 
 ![UART](./img/uart.png)
 
-Para que el Microcontrolador entre en modo de actualización de firmware es necesario
-cumplir con un patrón, estos se encuentran en el documento **AN2606**
+To put the microcontroller into firmware update mode, you need to follow a pattern as mentioned in document **AN2606**.
 
-**Página 62** 
+**Page 62**
 
 ![boot](./img/boot.png)
 
-El cual menciona que el _bootloader_ es activado aplicando el **patrón 6**
+It mentions that the bootloader is activated by applying **pattern 6**.
 
-**Tabla 21**
+**Table 21**
 
 ![boot2](./img/boot2.png)
 
-La primera opción que muestra la tabla es la que se puede seguir si no se cuenta con
-el  programdor [ST-LINK](https://www.st.com/en/development-tools/st-link-v2.html), 
-además que no se añadio ese puerto.
+The first option shown in the table can be followed if you do not have the [ST-LINK programmer](https://www.st.com/en/development-tools/st-link-v2.html) and if that port has not been added.
 
-El cambio que se requiere hacer en el programa STM32CubeProgrammer es el siguiente:
+The change required in the STM32CubeProgrammer program is as follows:
 
-1. Ir a la pestaña **OB**
+1. Go to the **OB** tab.
 
-2. User configuration
+2. User configuration.
 
-3. Buscar la casilla y modificar el valor nBoot0_SW(bit)
+3. Find the box and modify the value nBoot0_SW(bit).
 
 ![user_config](./img/user_conf.png)
 
-### Herramientas necesarias para actualizar el firmware
+### Tools Required for Firmware Update
 
 #### Software
 
@@ -67,37 +61,37 @@ El cambio que se requiere hacer en el programa STM32CubeProgrammer es el siguien
 
 #### Hardware
 
-- Puente USB-UART _(Ejemplo: USB UART CP2102)_
+- USB-UART Bridge _(Example: USB UART CP2102)_
 
-### Pasos para actualizar el firmware
+### Steps to Update the Firmware
 
-Conecta el puerto UART de la PCB al puente USB-UART de la siguiente manera:
+Connect the UART port of the PCB to the USB-UART bridge as follows:
 
-|PCB (UART)| Puente USB-UART|
-|-|-|
-|GND|GND|
-|TX|RX|
-|RX|TX|
-|3v3|3v3(opcional)|
+| PCB (UART) | USB-UART Bridge |
+| - | - |
+| GND | GND |
+| TX | RX |
+| RX | TX |
+| 3v3 | 3v3 (optional) |
 
-2. Conecta el Puente USB-UART a tu PC mientras presionas los botones de **RESET y BOOT**
+2. Connect the USB-UART Bridge to your PC while pressing the **RESET and BOOT** buttons.
 
-3. Abre STM32CubeProgrammer
+3. Open STM32CubeProgrammer.
 
-4. Selecciona UART en la parte superior derecha
+4. Select UART at the top right.
 
-5. Selecciona el puerto usb donde conectaste el puente USB-UART, en Linux suele 
-llevar el nombre de **/dev/ttyUSBx** y en Windows **COMx**
+5. Select the USB port where you connected the USB-UART bridge. In Linux, it often has the name **/dev/ttyUSBx**, and in Windows, it's usually **COMx**.
 
-6. Presionar el bóton verde de **Connect**
+6. Press the green **Connect** button.
 
-7. ⚠️**IMPORTANTE**⚠️ Realizar los pasos de la activación de carga de firmware estos los
-encuentras 
-[aquí](#actualizacion-de-firmware), si no sigues este paso, no podrás actualizar el
-firmware en un futuro.
-8. Seleccionar la pestaña que se señala a continuación
+7. ⚠️**IMPORTANT**⚠️ Perform the firmware loading activation steps, which you can find [here](#firmware-update). If you skip this step, you won't be able to update the firmware in the future.
+
+8. Select the tab as indicated below:
+
 ![prg1](./img/programar_1.png)
-9. Buscar la ruta de del archivo **.elf** y presionar Start Programming
-![prg1](./img/programar_2.png)
-10. Presiona RESET y ya debería de funcionar con el nuevo firmware
 
+9. Locate the path of the **.elf** file and press **Start Programming**:
+
+![prg1](./img/programar_2.png)
+
+10. Press RESET, and it should now work with the new firmware.

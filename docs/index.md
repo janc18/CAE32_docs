@@ -1,65 +1,50 @@
-# Bienvenido a la documentación de CAE32
+# Welcome to CAE32 Documentation
 
-Puedes visitar el [repositorio](https://github.com/janc18/CAE32)
-para acceder a todos los recursos.
+You can visit the [repository](https://github.com/janc18/CAE32)
+to access all the resources.
 
 ## CAE32
 
-CAE32 es un proyecto de código abierto bajo la licencia
-[GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.html), 
-que tiene como objetivo proporcionar todos los elementos necesarios para lograr
-disfrutar de juegos de simulación, con Hardware, Software y Firmware Open Source,
-principalmente en el área automovilística, pero nada impide que sea usada para otra área.
+CAE32 is an open-source project under the [GPLv3 license](https://www.gnu.org/licenses/quick-guide-gplv3.html). It aims to provide all the necessary elements for enjoying simulation games with Open Source Hardware, Software, and Firmware, primarily in the automotive field, but it can be used for other areas as well.
 
-## Componentes
+## Components
 
 - Hardware:
-	- Pedales
-	- Palanca de cambios _(Shifter)_
-	- Volante _(Steering Wheel)_
+	- Pedals
+	- Shifter (Gear Shift)
+	- Steering Wheel
 - Firmware
-
-- GUI(GTK3)
+- GUI (GTK3)
 
 ## Hardware
 
 <img src="./img/oshw-logo.svg" alt="drawing" width="200"/>
 
+The Hardware for this project is Open Source Hardware. You can find all the related files for hardware development [here](https://github.com/janc18/CAE32/tree/main/Esquematicos/CAE32_PCB). The software used is [KiCad](https://www.kicad.org/).
 
-El Hardware de este proyecto es Open Source Hardware,
-[aquí](https://github.com/janc18/CAE32/tree/main/Esquematicos/CAE32_PCB)
-encontrarás todos los archivos relacionados con el desarrollo del Hardware, 
-el Software usado es [KiCad](https://www.kicad.org/)
+The idea behind CAE32 hardware is to make it as modular as possible.
 
+**Example**
 
-La idea del hardware de CAE32 es que sea lo más modular posible.
+- The PCB for the pedals can be used either with the main board or independently, as it has HID (Human Interface Device) capability.
+- Peripherals (SPI, UART, CAN) are exposed for adding additional capabilities.
 
-**Ejemplo**
-
-- La PCB de los pedales es posible usarla en conjunto con la placa principal o sin ella,
-ya que esta cuenta con capacidad HID(Human Interface Device).
-
-- Periféricos _(SPI, UART, CAN)_ expuestos para añadirle más capacidades.
-
-Visita la categoría Hardware para obtener más información
+Visit the Hardware category for more information.
 
 ## Firmware
 
-El Firmware se desarrolla con el Framework proporcionado por el fabricante:
+The Firmware is developed using the framework provided by the manufacturer:
 
-- ESPIDF 
+- ESP-IDF
+- STM32CubeIDE
 
-- STM32CubeIDE 
+Additionally, FreeRTOS is implemented in both for ease of programming.
 
-Además se implementa en ambos FreeRTOS para una mayor facilidad de programación
-
-Visita [aquí](./firmware.md) para más información.
+Visit [here](./firmware.md) for more information.
 
 ## GUI
 
-Para configurar cada una de las características de manera intuitiva, se crea una GUI con
-la resulta relativamente fácil modificar el comportamiento de ciertas funciones.
+To intuitively configure each of the features, a GUI is created, making it relatively easy to modify the behavior of certain functions.
 
-La GUI está construida en el framework de GTK3 y está especialmente diseñada para
-ejecutarse en Linux.
+The GUI is built using the GTK3 framework and is specially designed to run on Linux.
 

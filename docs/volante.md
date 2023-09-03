@@ -1,48 +1,37 @@
-# PCB volante _(Steering Wheel)_
+# Steering Wheel PCB
 
 ![status](https://badgen.net/badge/Estado/Desarrollo de PCB/purple)
 
-Esta PCB tiene un grado de medio-avanzado de dificultad, ya que además de 
-adquirir datos (señales digitales o analógicas), también necesita proporcionar 
-retroalimentación _(Feedback)_ controlando un motor eléctrico.
+This PCB has a medium to advanced level of difficulty because, in addition to acquiring data (digital or analog signals), it also needs to provide feedback by controlling an electric motor.
 
-En el mercado actual existe tres maneras de dar la retroalimentación al volante:
+In the current market, there are three ways to provide feedback to the steering wheel:
 
 - DD (Direct Drive)
 - BD (Belt Drive)
 - GD (Gear Drive)
 
-[Aquí](https://kommandotech.com/guides/direct-vs-belt-vs-gear-drive/)
-se muestra las diferencias, ventajas y desventajas entre cada una de estas maneras,
-en resumen su nombre hace referencia a como transfieren el movimiento desde el 
-motor eléctrico hasta el volante.
+[Here](https://kommandotech.com/guides/direct-vs-belt-vs-gear-drive/) you can find a comparison of the differences, advantages, and disadvantages of each of these methods. In summary, their names refer to how they transfer motion from the electric motor to the steering wheel.
 
-**Para que sea lo más modular posible esta PCB estará dividida en dos partes**
+**To make it as modular as possible, this PCB will be divided into two parts.**
 
-## Adquisición de datos
-Para obtener el ángulo del volante se usará algún sensor de efecto Hall, ya 
-que ofrece un ángulo de giro ilimitado.
+## Data Acquisition
+To obtain the steering wheel angle, some Hall effect sensor will be used as it offers an unlimited angle of rotation.
 
-Esta PCB solo contará con:
+This PCB will only include:
 
-- Microcontrolador principal (con capacidades USB HID)
-- Entrada analógica para obtener el ángulo del volante
-- Puerto USB-C y RJ45
-- Salida en algún protocolo para controlar la etapa de potencia
+- Main microcontroller (with USB HID capabilities)
+- Analog input to obtain the steering wheel angle
+- USB-C and RJ45 ports
+- Output in some protocol to control the power stage
 
-## Control de potencia
-Para el control de un motor eléctrico es necesario contar con una etapa de potencia,
-ya que los pines de un Microcontrolador no pueden ni deben conectarse directamente a un
-motor.
+## Power Control
+For controlling an electric motor, a power stage is necessary since the pins of a microcontroller cannot and should not be directly connected to a motor.
 
-**Se diseñarán dos PCBs**
+**Two PCBs will be designed:**
 
-1. Control de un motor DC (corriente directa)
+1. DC motor control (direct current)
+2. Stepper motor control
 
-2. Control de un motor a pasos
+**As the design of this PCB has not yet begun, updates will be posted here.**
 
-**Como aún no se a iniciado el diseño de esta PCB se estarán subiendo actualizaciones
-aquí**
-
-## Estado Actual
-
+## Current Status

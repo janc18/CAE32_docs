@@ -3,15 +3,15 @@ site_name: CAE32
 nav:
   - Home: index.md
   - 'Hardware':
-      - 'Pedales': 'pedales.md'
-      - 'Volante': 'volante.md'
-      - 'Palanca de cambios': 'palanca_de_cambios.md'
+      - 'Pedals': 'pedales.md'
+      - 'Steering Wheel': 'volante.md'
+      - 'Shifter': 'palanca_de_cambios.md'
   - 'Changelog':
-      - 'Pedales': 'changelog_hardware.md'
+      - 'Pedals': 'changelog_hardware.md'
   - Firmware:
       - 'Firmware': 'firmware.md'
-  - Sofware:
+  - Software:
       - 'GUI gtk3': 'gui.md'
   - 'Tests':
-      - 'Simulación de dispositivo': sim_disp.md
+      - 'Device Simulation': sim_disp.md
 theme: readthedocs

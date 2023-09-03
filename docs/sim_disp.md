@@ -1,19 +1,14 @@
-# Simulación de dispositivo (HID)
+# Device Simulation (HID)
 
-Para verificar el funcionamiento de la GUI, en **Linux** se hace uso del modulo
-[uinput](https://www.kernel.org/doc/html/v4.12/input/uinput.html), el cual puede emular
-dispositivos de entrada.
+To verify the functionality of the GUI on **Linux**, we make use of the [uinput](https://www.kernel.org/doc/html/v4.12/input/uinput.html) module, which can emulate input devices.
 
-En el repositorio se encuentra código funcional con el cual se puede mostrar como 
-interactua la GUI con el dispositivo, [aquí](https://github.com/janc18/CAE32/tree/main/Codigo/Device_simulation)
-puedes encontrarlo
+You can find functional code in the repository demonstrating how the GUI interacts with the device, [here](https://github.com/janc18/CAE32/tree/main/Codigo/Device_simulation).
 
-## _Report Descriptors_
+## Report Descriptors
 
-Es una trama de caracteres usada para definir y clasificar el tipo de dispositivo
-que se acaba de conectar.
+A Report Descriptor is a character string used to define and classify the type of device that has just been connected.
 
-**Ejemplo de una trama de datos de un Report Descriptor**
+**Example of a Report Descriptor data string**
 
 ```c
 uint8_t hid_report_descriptor[] = {
@@ -44,11 +39,7 @@ uint8_t hid_report_descriptor[] = {
     0xc0        /* */
 };
 ```
-Para mayor información de el significado de cada valor es recomendable visitar la
-siguiente documentación [aquí](https://www.usb.org/sites/default/files/documents/hid1_11.pdf).
 
-Actualmente existe la librería [TinyUSB](https://docs.tinyusb.org/en/latest/), que ofrece
-capas de abstracción con la que resulta sencillo tener un dispositivo HID funcional 
-rapidamente.
+For more information on the meaning of each value, it is recommended to visit the [official USB HID documentation](https://www.usb.org/sites/default/files/documents/hid1_11.pdf)
 
-
+Currently, the [TinyUSB](https://docs.tinyusb.org/en/latest/) library is available, which offers abstraction layers that make it easy to have a functional HID device quickly.
