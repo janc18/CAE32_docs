@@ -11,12 +11,12 @@ This PCB has the least degree of design complexity since it only needs to read t
 This PCB will only include:
 
 - Main microcontroller (with USB HID capabilities)
-- 10 digital inputs, one for each gear
+- 13 digital inputs, one for each gear
 - USB-C port and RJ45 port
 
-**As the design for this PCB has not yet started, updates will be posted here.**
-
 ## Current Status
+
+### Version 1.1
 
 I decided to use the RP2040 microcontroller, as mentioned earlier, since only an MCU with HID capabilities is required. When compared to the price of any MCU from the Espressif family, the RP2040 is considerably cheaper.
 
@@ -28,3 +28,27 @@ Lastly, the PCB is given a module format with the use of castellated pins so tha
 
 ![shifter](./img/Shifter.png)
 ![shifter3D](./img/Shifter_.png)
+
+### Version 1.2
+
+**Note:** In the case that you don't want to use the FPC connector to
+connect the inputs of the gear, you can use the exposed pins
+to connect directly to the PCB.
+
+- Changed via diameter from 0.15mm to 0.3mm to reduce PCB
+manufacturing costs.
+
+- Moved the boot button to a more accessible location.
+
+- Replaced Castellated holes with FPC connectors (input pins
+from the gears and expansion port).
+
+- Added a few GND pins to complete the digital circuit 
+from the input device(buttons, Hall sensors, etc).
+
+- Added Power and status LED indicator
+
+- Added silkscreen with the PCB details
+
+![shifter1_2](./img/Shifter_1_2.png)
+
