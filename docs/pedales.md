@@ -1,30 +1,29 @@
 # Pedals PCB
-![status](https://badgen.net/badge/Status/Manufacturing Prototype/yellow)
-## Version: 2, Revision: 1
+![status](https://badgen.net/badge/Status/Testing%20ADC%20and%20Load%20Cell%20ICs/blue?icon=label)
+## Version: 2.1 Revision: 1
 
-![Pedals PCB v2 Rev1](./img/Pedals3.png)
+![Pedals PCB v2.1 Rev1](./img/cropped_isometric.png)
 
-<img src="../img/front_bgr.png" alt="drawing" width="350"/>
-<img src="../img/back_bgr.png" alt="drawing" width="350"/>
+![Pedals PCB v2.1 Rev1 front](./img/cropped_front.png)
+![Pedals PCB v2.1 Rev1 back](./img/cropped_back.png)
 
-This PCB has a medium level of difficulty, mainly due to the routing of the analog part of the PCB.
 
 ## Features
 
 - [8 Analog Inputs](#analog-inputs-adc128s102)
 - [3 Inputs for Load Cells](#load-cells)
-- UART _(For firmware updates or other purposes)_
-- SPI
-- CAN _(No transducer included)_
-- USB-C port for communication with PC
-- RJ45 port to connect to the main board
+- Extension Port
+    - UART _(For firmware updates or other purposes)_
+    - 2 x SPI
+    - CAN _(No transducer included)_
+- USB-C port for communication with PC and firmware updates
 
 ## PCB Purpose
 It is used to capture the position of the pedals with its 8 analog channels and support for load cells.
 
 ## Electrical Schematic 
 
-[View PDF](./pdfs/kicad_schematic.pdf)
+[View PDF](./pdfs/PedalsV_2.1.1.pdf)
 
 ## Key Components
 
@@ -36,20 +35,18 @@ It is used to capture the position of the pedals with its 8 analog channels and 
 
 ## Analog Inputs _(ADC128S102)_
 
-To acquire the position of the sensors (potentiometers, Hall effect, etc.), the ADC128S102 IC is used, which is an 8-channel multiplexer that integrates a **12-bit** ADC, providing a resolution of **4096** positions. It is connected via **SPI** to the microcontroller (STM32F072RBT6).
+To acquire the position of the sensors (potentiometers, Hall effect, etc.), the ADC128S102 IC is used, which is an 8-channel multiplexer that integrates a **12-bit** ADC, providing a resolution of **4096** positions.
 
-The PCB has labels such as **ACCEL, BRAKE, CLUTCH, AN4-AN8**.
+The PCB has labels such as **ACCEL, BRAKE, CLUTCH and CH**.
 
-By default, **ACCEL, BRAKE, CLUTCH** correspond to the default sensor inputs, while **AN4-AN8** can be used for any other purpose and are located on the back of the PCB.
-
-Each of the sensor input points (e.g., potentiometer) has 3 pins with their respective labels, and this also applies to their respective pads.
+By default, **ACCEL, BRAKE, CLUTCH** correspond to the default sensor inputs, while the row above are the channels that can be used for any other purpose 
 
 ![inputs](./img/señales.png)
 
 |Label Name|Meaning|
 |-|-|
-|3v3+|Here, the sensor is powered with 3.3V|
-|AN|Analog sensor output|
+|3v3+|3.3v Output|
+|CH|Analog sensor|
 |GND|Ground|
 
 To provide a more stable reference voltage, a 3.3V voltage reference integrated circuit [REF3033](http://www.ti.com/lit/ds/symlink/ref3033.pdf) is added to the PCB, which allows for more stable readings.
@@ -76,24 +73,13 @@ Each of the ports for the load cells is labeled, and they have typical symbols, 
 
 ![load-cells](./img/load_cells.png)
 
-For more information, I recommend referring to the electrical diagram [here](./pdfs/kicad_schematic.pdf#page=5), where you can find it.
+For more information, I recommend referring to the electrical diagram [here](./pdfs/PedalsV_2.1.1.pdf#page=5).
 
-## Device Mode (SPI)
-This version of the pedals can function as a **device** because the RJ45 connector is connected to the Microcontroller via SPI. This is done to send all data to the main board.
+## Expansion Port
+The expansion port are connected to communications buses(UART,SPI and CAN), than can be
+used for debugging purposes or to expand the capabilities.
+
+![expansion port](./img/expansion_port.png)
 
 ## Device Mode (USB-C)
 It allows the STM32F072RBT6 Microcontroller to act as a HID (Human Interface Device), which means it will be recognized as a joystick by the PC.
-
-## Notes on the Above-Mentioned Modes
-
-**SPI**
-
-When connecting via the RJ45 port, it is supplied with power, so you should not connect the USB-C port.
-
-Additionally, the data acquired by the PCB is sent through the SPI protocol to the main PCB using the RJ45 port.
-
-**USB-C**
-
-The USB-C port configuration is in device mode. This way, the host (PC) will provide power, and it will be recognized as a HID device.
-
-Furthermore, it has two pull-down resistors connected to **CC1 and CC2**
