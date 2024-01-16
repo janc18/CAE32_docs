@@ -25,33 +25,21 @@ The STM32F072RBT6 allows firmware updates in three possible ways:
 
 For more information, you can visit the [datasheet](https://datasheet.lcsc.com/lcsc/1809301214_STMicroelectronics-STM32F072RBT6_C46046.pdf#page=13).
 
-To update the firmware for this version, you must use UART. The port is located here:
+To update the firmware for this version, you can use USB-DFU (Connecting the USB-TypeC)
+or the UART port located at the expansion port.
 
-![UART](./img/uart.png)
+**Note: If you want to update through UART, another board is required to connect via 
+FFC connector.**
 
-To put the microcontroller into firmware update mode, you need to follow a pattern as mentioned in document **AN2606**.
+To put the microcontroller into firmware update mode, you need to follow the pattern # 2 as mentioned in document [AN2606](https://www.st.com/resource/en/application_note/an2606-stm32-microcontroller-system-memory-boot-mode-stmicroelectronics.pdf).
 
-**Page 62**
+|Pattern|Condition|
+|-|-|
+|Pattern 2|Boot0(pin) = 1 and nBoot1(bit) = 1|
 
-![boot](./img/boot.png)
-
-It mentions that the bootloader is activated by applying **pattern 6**.
-
-**Table 21**
-
-![boot2](./img/boot2.png)
-
-The first option shown in the table can be followed if you do not have the [ST-LINK programmer](https://www.st.com/en/development-tools/st-link-v2.html) and if that port has not been added.
-
-The change required in the STM32CubeProgrammer program is as follows:
-
-1. Go to the **OB** tab.
-
-2. User configuration.
-
-3. Find the box and modify the value nBoot0_SW(bit).
-
-![user_config](./img/user_conf.png)
+This means that you just need to press the button labeled as **BOOT**, while ensuring 
+that the option bit **nBoot1** remains set to 1. This bit can be set in the code or 
+through the STM32CubeProgrammer IDE.
 
 ### Tools Required for Firmware Update
 
@@ -61,37 +49,29 @@ The change required in the STM32CubeProgrammer program is as follows:
 
 #### Hardware
 
-- USB-UART Bridge _(Example: USB UART CP2102)_
+- USB-TypeC cable
 
-### Steps to Update the Firmware
+- USB-TTL Bridge(In the case of UART connection method) 
 
-Connect the UART port of the PCB to the USB-UART bridge as follows:
+### Steps to Update the Firmware (Using USB-TypeC)
 
-| PCB (UART) | USB-UART Bridge |
-| - | - |
-| GND | GND |
-| TX | RX |
-| RX | TX |
-| 3v3 | 3v3 (optional) |
+1. Connect the USB-C cable to the PCB
 
-2. Connect the USB-UART Bridge to your PC while pressing the **RESET and BOOT** buttons.
+2. Connect the USB-C cable to your PC while pressing the **RESET and BOOT** buttons.
 
 3. Open STM32CubeProgrammer.
 
-4. Select UART at the top right.
+4. Select USB at the top right.
 
-5. Select the USB port where you connected the USB-UART bridge. In Linux, it often has the name **/dev/ttyUSBx**, and in Windows, it's usually **COMx**.
+5. Select the Port in this case is USB1
+![Selection DFU](./img/dfu0.png)
 
 6. Press the green **Connect** button.
 
-7. ⚠️**IMPORTANT**⚠️ Perform the firmware loading activation steps, which you can find [here](#firmware-update). If you skip this step, you won't be able to update the firmware in the future.
-
-8. Select the tab as indicated below:
-
+7. Navigate to the tab as indicated below:
 ![prg1](./img/programar_1.png)
 
 9. Locate the path of the **.elf** file and press **Start Programming**:
-
 ![prg1](./img/programar_2.png)
 
 10. Press RESET, and it should now work with the new firmware.
