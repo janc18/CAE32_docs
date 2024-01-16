@@ -51,5 +51,35 @@
 
 ![PCB V2](./img/Pedals3.png)
 
+### Key Issues with Version 2
 
+1. UART silk-screen with TX and RX labels reversed.
 
+2. Mounting holes too small.
+
+3. Reset and Boot buttons with bad routing.
+
+4. Square PCB format.
+
+5. Didn't add a low pass filter to the IC ADC. 
+
+### Troubleshooting for Version 2
+
+1. The issue with the silk-screen placement was caused by confusion while reading 
+the datasheet, leading to the misplacement of the TX and RX pins.
+
+2. Mounting holes change to M3.
+
+3. The buttons used, had a missmatch with the symbol and footprint causing a boot 
+loop that could be recognize by the PC and UART-TTL bridge.
+
+4. To achieve a more "modern" design the square shape was changed for a round one.
+
+5. To reduce noise from the ADC input, a low pass filter was added.
+
+_Overall when comparing the version 2.0 and the 2.1, the principal difference lies in
+the PCB shape, now it is smaller, the RJ45 connector is removed, and all
+debugging and bus ports are replaced with a FFC connector._
+
+### Outcome (Version 2.1)
+![PCB V2.1.1](./img/cropped_isometric.png)
