@@ -1,6 +1,6 @@
 # Gear Shift _(Shifter)_
 
-![status](https://badgen.net/badge/Status/PCB Development/purple)
+![status](https://badgen.net/badge/Status/Development%20on%20hold,%20currently%20working%20on%20another%20aspect%20of%20the%20project/orange?icon=label)
 
 This PCB has the least degree of design complexity since it only needs to read the digital signal from sensors, which can be:
 
