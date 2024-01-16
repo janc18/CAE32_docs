@@ -1,6 +1,6 @@
 # Steering Wheel PCB
 
-![status](https://badgen.net/badge/Status/PCB Development/purple)
+![status](https://badgen.net/badge/Status/Development%20on%20hold,%20currently%20working%20on%20another%20aspect%20of%20the%20project/orange?icon=label)
 
 This PCB has a medium to advanced level of difficulty because, in addition to acquiring data (digital or analog signals), it also needs to provide feedback by controlling an electric motor.
 
