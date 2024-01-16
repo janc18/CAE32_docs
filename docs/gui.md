@@ -13,7 +13,7 @@ The construction of the GUI is done in a Docker container with Debian 11.
 
 ## Current Status
 
-At the moment, you can see the current movement of the pedals.
-
-![gui](./videos/output.gif)
-
+As of January 15, 2024, the plan is to refactor the existing GUI to listen to a socket
+connection for receiving stream data with the most updated values. Another application
+will generate these values; it will be a low-level application written in C that will 
+handle all communication with the device.
