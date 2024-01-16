@@ -2,8 +2,6 @@
 
 To verify the functionality of the GUI on **Linux**, we make use of the [uinput](https://www.kernel.org/doc/html/v4.12/input/uinput.html) module, which can emulate input devices.
 
-You can find functional code in the repository demonstrating how the GUI interacts with the device, [here](https://github.com/janc18/CAE32/tree/main/Codigo/Device_simulation).
-
 ## Report Descriptors
 
 A Report Descriptor is a character string used to define and classify the type of device that has just been connected.
@@ -43,3 +41,15 @@ uint8_t hid_report_descriptor[] = {
 For more information on the meaning of each value, it is recommended to visit the [official USB HID documentation](https://www.usb.org/sites/default/files/documents/hid1_11.pdf)
 
 Currently, the [TinyUSB](https://docs.tinyusb.org/en/latest/) library is available, which offers abstraction layers that make it easy to have a functional HID device quickly.
+This library can easyly use with all the ESP-32 microcontroller family.
+
+In the case of STM32 microcontrollers, STMicroelectronics provides its own library
+for USB communication. 
+
+## Device Descriptor Tester
+
+As of today, January 15, 2024, an application is being developed for automated testing.
+This application consists of a program that receives an input file with all the 
+desired features of the device. The file is then parsed, and reading the device file
+descriptor allows it to be compared with the input file. The application then 
+returns a summary with all the test results
